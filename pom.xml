@@ -12,7 +12,6 @@
   <properties>
     <maven.compiler.source>25</maven.compiler.source>
     <maven.compiler.target>25</maven.compiler.target>
-    <maven.compiler.release>25</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <main.class>corp.siendev.com.JavaConf</main.class>
     <tamboui.version>0.6.0</tamboui.version>
@@ -22,7 +21,7 @@
     <dependency>
       <groupId>io.github.struppigel</groupId>
       <artifactId>portex_2.12</artifactId>
-      <version>5.0.7</version>
+      <version>6.0.0</version>
     </dependency>
     <dependency>
       <groupId>dev.tamboui</groupId>

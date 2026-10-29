@@ -14,7 +14,7 @@ import dev.tamboui.tui.event.KeyEvent;
 import static dev.tamboui.toolkit.Toolkit.column;
 
 public class JavaConf extends ToolkitApp {
-    public static void main( String[] args ) throws Exception {
+    public static void main(String[] args) throws Exception {
         new JavaConf().run();
     }
 
