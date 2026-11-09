@@ -6,10 +6,9 @@
 package corp.siendev.com;
 
 import corp.siendev.com.screens.SplashScreen;
+import corp.siendev.com.utils.AppEventHandler;
 import dev.tamboui.toolkit.app.ToolkitApp;
 import dev.tamboui.toolkit.element.Element;
-import dev.tamboui.toolkit.event.EventResult;
-import dev.tamboui.tui.event.KeyEvent;
 
 import static dev.tamboui.toolkit.Toolkit.column;
 
@@ -28,14 +27,6 @@ public class JavaConf extends ToolkitApp {
         return column(new SplashScreen().render())
                 .id("root")
                 .focusable()
-                .onKeyEvent(this::handleKeyEvent);
-    }
-
-    private EventResult handleKeyEvent(KeyEvent event) {
-        if (event.isQuit()) {
-            quit();
-            return EventResult.HANDLED;
-        }
-        return EventResult.UNHANDLED;
+                .onKeyEvent(new AppEventHandler());
     }
 }

@@ -6,6 +6,7 @@
 package corp.siendev.com.screens;
 
 import corp.siendev.com.ui.Theme;
+import corp.siendev.com.utils.AppEventHandler;
 import dev.tamboui.toolkit.element.Element;
 
 import java.util.Arrays;
@@ -30,7 +31,9 @@ public class HelpScreen {
         return dock()
                 .top(logo())
                 .center(helpMenu())
-                .bottom(footerHelp());
+                .bottom(footerHelp())
+                .focusable()
+                .onKeyEvent(new AppEventHandler());
     }
 
     private Element helpMenu() {
