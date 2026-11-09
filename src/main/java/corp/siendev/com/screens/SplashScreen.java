@@ -6,6 +6,7 @@
 package corp.siendev.com.screens;
 
 import corp.siendev.com.ui.Theme;
+import corp.siendev.com.utils.AppEventHandler;
 import dev.tamboui.layout.Constraint;
 import dev.tamboui.toolkit.element.Element;
 
@@ -32,7 +33,9 @@ public class SplashScreen {
         return dock()
                 .top(header())
                 .center(fileChooser())
-                .bottom(footer(), Constraint.length(1));
+                .bottom(footer(), Constraint.length(1))
+                .focusable()
+                .onKeyEvent(new AppEventHandler());
     }
 
     private Element header() {

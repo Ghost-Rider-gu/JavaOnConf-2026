@@ -14,11 +14,11 @@ public class AppEventHandler implements KeyEventHandler {
     @Override
     public EventResult handle(KeyEvent event) {
         if (event.isChar('h')) {
-            System.out.println("was pressed h");
+            ScreenManager.getInstance().setScreen(ScreenManager.Screen.HELP);
             return EventResult.HANDLED;
         }
         if (event.code() == KeyCode.F3) {
-            System.out.println(FilePicker.selectFile());
+            ScreenManager.getInstance().setScreen(ScreenManager.Screen.MAIN);
             return EventResult.HANDLED;
         }
         return EventResult.UNHANDLED;

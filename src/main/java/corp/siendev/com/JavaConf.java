@@ -5,8 +5,11 @@
 
 package corp.siendev.com;
 
+import corp.siendev.com.screens.HelpScreen;
+import corp.siendev.com.screens.MainScreen;
 import corp.siendev.com.screens.SplashScreen;
 import corp.siendev.com.utils.AppEventHandler;
+import corp.siendev.com.utils.ScreenManager;
 import dev.tamboui.toolkit.app.ToolkitApp;
 import dev.tamboui.toolkit.element.Element;
 
@@ -24,7 +27,13 @@ public class JavaConf extends ToolkitApp {
 
     @Override
     protected Element render() {
-        return column(new SplashScreen().render())
+        Element screen = switch (ScreenManager.getInstance().getCurrentScreen()) {
+            case SPLASH -> new SplashScreen().render();
+            case MAIN -> new MainScreen().render();
+            case HELP -> new HelpScreen().render();
+        };
+
+        return column(screen)
                 .id("root")
                 .focusable()
                 .onKeyEvent(new AppEventHandler());
