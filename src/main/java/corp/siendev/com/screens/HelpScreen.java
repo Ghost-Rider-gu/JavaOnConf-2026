@@ -38,7 +38,7 @@ public class HelpScreen {
 
     private Element helpMenu() {
         return panel(" Menu ",
-                  row(text("[F3] Open file    [h] Help    [q] Quit").fg(CURRENT_THEME.text())).length(1))
+                  row(text("[F1] Home    [F3] Open file    [h] Help    [q] Quit").fg(CURRENT_THEME.text())).length(1))
                 .titleCenter()
                 .borderColor(CURRENT_THEME.border());
     }

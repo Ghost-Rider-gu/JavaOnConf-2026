@@ -70,4 +70,8 @@ public class PEAnalysis {
             return Collections.emptyList();
         }
     }
+
+    public String getFileName() {
+        return peData.getFile().getAbsolutePath();
+    }
 }

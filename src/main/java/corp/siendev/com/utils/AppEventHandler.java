@@ -21,6 +21,10 @@ public class AppEventHandler implements KeyEventHandler {
             ScreenManager.getInstance().setScreen(ScreenManager.Screen.MAIN);
             return EventResult.HANDLED;
         }
+        if (event.code() == KeyCode.F1) {
+            ScreenManager.getInstance().setScreen(ScreenManager.Screen.SPLASH);
+            return EventResult.HANDLED;
+        }
         return EventResult.UNHANDLED;
     }
 }

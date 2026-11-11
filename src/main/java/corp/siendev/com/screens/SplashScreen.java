@@ -7,13 +7,14 @@ package corp.siendev.com.screens;
 
 import corp.siendev.com.ui.Theme;
 import corp.siendev.com.utils.AppEventHandler;
-import dev.tamboui.layout.Constraint;
+import dev.tamboui.style.Color;
 import dev.tamboui.toolkit.element.Element;
 
 import java.util.Arrays;
 
 import static dev.tamboui.toolkit.Toolkit.column;
 import static dev.tamboui.toolkit.Toolkit.dock;
+import static dev.tamboui.toolkit.Toolkit.flow;
 import static dev.tamboui.toolkit.Toolkit.panel;
 import static dev.tamboui.toolkit.Toolkit.row;
 import static dev.tamboui.toolkit.Toolkit.spacer;
@@ -29,11 +30,29 @@ public class SplashScreen {
             "#+# #+# #+#     #+#   #+#+#+#   #+#     #+#       #+#    #+# #+#   #+#+#       #+#    #+# #+#    #+# #+#   #+#+# #+#               #+#       #+#   #+#  #+#       #+#    #+# \n" +
             " #####  ###     ###     ###     ###     ###        ########  ###    ####        ########   ########  ###    #### ###              ##########  #######  ##########  ########  ";
 
+    private static final String[] TECHS = {
+            "Java", "Assembler", "Rust", "Python", "Go", "TypeScript",
+            "C++", "Reverse Engineering", "Kali Linux", "Parrot OS", "NASM", "FASM",
+            "JavaScript", "Clojure", "Zig", "Ethical Hacking", "Clouds", "OllyDBG",
+            "Lua", "Ghidra", "IDA Pro", "PE", "Linux", "Windows", "WinDBG", "Security",
+            "Data", "Algorithms"
+    };
+
+    private static final Color[] TECHS_COLORS = {
+            Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW,
+            Color.CYAN, Color.MAGENTA, Color.WHITE, Color.LIGHT_RED,
+            Color.LIGHT_GREEN, Color.LIGHT_BLUE, Color.LIGHT_YELLOW, Color.LIGHT_CYAN,
+            Color.LIGHT_RED, Color.BRIGHT_WHITE, Color.DARK_GRAY, Color.GREEN, Color.GRAY,
+            Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.LIGHT_GREEN,
+            Color.LIGHT_BLUE, Color.LIGHT_YELLOW, Color.LIGHT_CYAN, Color.LIGHT_RED,
+            Color.CYAN, Color.LIGHT_MAGENTA
+    };
+
     public Element render() {
         return dock()
                 .top(header())
-                .center(fileChooser())
-                .bottom(footer(), Constraint.length(1))
+                .center(mainContent())
+                .bottom(footer())
                 .focusable()
                 .onKeyEvent(new AppEventHandler());
     }
@@ -49,21 +68,18 @@ public class SplashScreen {
                 column(row(
                  text(" PE ANALYSIS ").fg(CURRENT_THEME.text()),
                  spacer(),
-                 text(" to continue, please select the file ... ").dim(),
+                 text(" to continue, please press F3 and select the file ...").dim(),
                  text(" [h] Help ").dim(),
                  text(" [q] Quit ").dim()
                 ).length(1))
         ).id("splash");
     }
 
-    private Element fileChooser() {
-        return panel()
-                .id("fileChooser")
-                .focusable()
-                .rounded()
-                .titleEllipsisStart()
-                .borderColor(CURRENT_THEME.border())
-                .fill();
+    private Element mainContent() {
+        return flow(buildTechBoxes())
+                .spacing(1)
+                .rowSpacing(1)
+                .margin(2);
     }
 
     private Element footer() {
@@ -72,5 +88,19 @@ public class SplashScreen {
                 spacer(),
                 text("[PE Analysis - malware you shall not pass]").dim()
         ).length(1);
+    }
+
+    private Element techBox(String tech, Color boxColor) {
+        return panel(text("  " + tech + "  ").bold().fg(boxColor))
+                .rounded()
+                .borderColor(boxColor);
+    }
+
+    private Element[] buildTechBoxes() {
+        Element[] techBoxes = new Element[TECHS.length];
+        for (int i = 0; i < TECHS.length; i++) {
+            techBoxes[i] = techBox(TECHS[i], TECHS_COLORS[i]);
+        }
+        return techBoxes;
     }
 }

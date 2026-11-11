@@ -5,14 +5,17 @@
 
 package corp.siendev.com.utils;
 
+import javax.swing.JFrame;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
-import java.io.File;
 
 public class FilePicker {
     public static String selectFile() {
+        JFrame frame = new JFrame();
+        frame.setAlwaysOnTop(true);
+
         JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         fileChooser.setDialogTitle("Choose PE file");
         fileChooser.setAcceptAllFileFilterUsed(false);
@@ -20,11 +23,13 @@ public class FilePicker {
         FileFilter fileFilter = new FileNameExtensionFilter("PE files", "exe", "dll");
         fileChooser.addChoosableFileFilter(fileFilter);
 
-        int result = fileChooser.showOpenDialog(null);
+        int result = fileChooser.showOpenDialog(frame);
         if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            System.out.println(selectedFile.getAbsolutePath());
+            frame.dispose();
+            return fileChooser.getSelectedFile().getAbsolutePath();
         }
+
+        frame.dispose();
         return "No file selected";
     }
 }
