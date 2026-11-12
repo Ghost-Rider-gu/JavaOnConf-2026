@@ -64,7 +64,7 @@ public class PEEditor {
             int sectionAlignment = Integer.reverseBytes(raf.readInt());
             int fileAlignment = Integer.reverseBytes(raf.readInt());
 
-            int sizeOfImageOffset = optionalHeaderOffset + (is64Bit ? 56 : 56);
+            int sizeOfImageOffset = optionalHeaderOffset + (56);
             raf.seek(sizeOfImageOffset);
             int sizeOfImage = Integer.reverseBytes(raf.readInt());
 
@@ -124,6 +124,6 @@ public class PEEditor {
     }
 
     private static int alignUp(int value, int alignment) {
-        return (value + alignment - 1) & ~(alignment - 1);
+        return (value + alignment - 1) & -alignment;
     }
 }
