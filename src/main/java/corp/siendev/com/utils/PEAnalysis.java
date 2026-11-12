@@ -48,7 +48,7 @@ public class PEAnalysis {
 
         List<String> signatureData = new ArrayList<>(matches.size());
         matches.forEach(signature -> signatureData.add(signature.getName()));
-        return signatureData;
+        return signatureData.stream().distinct().toList();
     }
 
     public SectionTable getSections() {
